@@ -22,6 +22,20 @@ var detectNetwork = function(cardNumber) {
     return 'American Express';
   }
 
+  // For Visa, prefix is 4 and length 13, 16 or 19
+  if (cardNumber[0] === '4' && (cardNumber.length === 13
+  || cardNumber.length === 16 || cardNumber.length === 19 )) {
+    return 'Visa';
+  }
+
+
+  //For Master card prefix 51, 52, 53, 54, or 55 and a length of 16.
+  if ( cardNumber.length === 16 && cardNumber[0] === '5'
+  && (cardNumber[1] === '1' || cardNumber[1] === '2' || cardNumber[1] === '3'
+  || cardNumber[1] === '4' || cardNumber[1] === '5')) {
+    return 'MasterCard';
+  }
+
   // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
 
