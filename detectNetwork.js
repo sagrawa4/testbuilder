@@ -27,7 +27,7 @@ var detectNetwork = function(cardNumber) {
     return 'American Express';
   }
 
-  // For Visa, prefix is 4 and length 13, 16 or 19
+  // For Visa,prefix is 4 and length 13, 16 or 19
   if (cardNumber[0] === '4' && (cardNumber.length === 13
   || cardNumber.length === 16 || cardNumber.length === 19 )) {
     if (firstFour === '4903' || firstFour === '4905' || firstFour === '4911' ||
