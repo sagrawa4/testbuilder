@@ -96,10 +96,6 @@ describe('Visa', function() {
 });
 
 describe('MasterCard', function() {
-  // Chai lets you write more human-readable tests that throw helpful errors.
-  // Expect syntax is one way to do this, but there are others.
-  // If you want to know more, check out the documentation.
-  //   http://chaijs.com/api/bdd/
   var should = chai.should();
 
   it('has a prefix of 51 and a length of 16', function() {
@@ -118,15 +114,6 @@ describe('MasterCard', function() {
     (detectNetwork('5512345678901234')).should.equal('MasterCard');
   });
 
-  // You can also use should instead of expect, which changes the style
-  // slightly. It really doesn't matter which one you use - check out
-  // http://chaijs.com/guide/styles/ for more info, but it's important
-  // to be consistent (unlike in this file, where we use BOTH expect
-  // and should, but that's just for learning), so once you've gotten
-  // these tests to pass using should syntax, refactor your tests to
-  // use either expect or should, but not both.
-  var should = chai.should();
-
   it('has a prefix of 54 and a length of 16', function() {
     detectNetwork('5412345678901234').should.equal('MasterCard');
   });
@@ -135,22 +122,7 @@ describe('MasterCard', function() {
   });
 });
 
-/*var detectIssues = function(cardNumber) {
-  var firstFour = cardNumber.slice(0, 4);
-  var firstThree = cardNumber.slice(0, 3);
-  var firstTwo = cardNumber.slice(0, 2);
-  if ((cardNumber.length === 16 || cardNumber.length === 19) && (firstFour === '6011' ||
-  firstThree === '644' || firstThree === '645' ||
-  firstThree === '646' || firstThree === '647' ||
-  firstThree === '648' || firstThree === '649' ||
-  firstTwo === '65') ) {
-    return 'Discover';
-  }
-};*/
-
 describe('Discover', function() {
-  // Tests without a function will be marked as "pending" and not run
-  // Implement these tests (and others) and make them pass!
 
   var should = chai.should();
   it('has a prefix of 6011 and a length of 16', function() {
@@ -167,104 +139,224 @@ describe('Discover', function() {
   });
 });
 
-for (var prefix = 644; prefix <= 649; prefix++) {
-  describe('Discover', function() {
-    var should = chai.should();
-    it('has a prefix of ' + prefix + ' and a length of 16', function() {
-      detectNetwork('6441345678901234').should.equal('Discover');
-      detectNetwork('6451345678901234').should.equal('Discover');
-      detectNetwork('6461345678901234').should.equal('Discover');
-      detectNetwork('6471345678901234').should.equal('Discover');
-      detectNetwork('6481345678901234').should.equal('Discover');
-      detectNetwork('6491345678901234').should.equal('Discover');
-    });
-    it('has a prefix of ' + prefix + ' and a length of 19', function() {
-      detectNetwork('6441456789012345678').should.equal('Discover');
-      detectNetwork('6451456789012345678').should.equal('Discover');
-      detectNetwork('6461456789012345678').should.equal('Discover');
-      detectNetwork('6471456789012345678').should.equal('Discover');
-      detectNetwork('6481456789012345678').should.equal('Discover');
-      detectNetwork('6491456789012345678').should.equal('Discover');
-    });
-  });
-}
 
-
-for (var i = 12; i < 20; i++ ) {
-  describe('Maestro', function() {
-    // Write full test coverage for the Maestro card
-    var should = chai.should();
-    it('has a prefix of 5018 and a length of ' + i, function() {
-      detectNetwork('501845678901').should.equal('Maestro');
-      detectNetwork('5018456789012').should.equal('Maestro');
-      detectNetwork('50184567890123').should.equal('Maestro');
-      detectNetwork('501845678901234').should.equal('Maestro');
-      detectNetwork('5018456789012345').should.equal('Maestro');
-      detectNetwork('50184567890123456').should.equal('Maestro');
-      detectNetwork('501845678901234567').should.equal('Maestro');
-      detectNetwork('5018456789012345678').should.equal('Maestro');
-    });
-    it('has a prefix of 5020 and a length of ' + i, function() {
-      detectNetwork('502045678901').should.equal('Maestro');
-      detectNetwork('5020456789012').should.equal('Maestro');
-      detectNetwork('50204567890123').should.equal('Maestro');
-      detectNetwork('502045678901234').should.equal('Maestro');
-      detectNetwork('5020456789012345').should.equal('Maestro');
-      detectNetwork('50204567890123456').should.equal('Maestro');
-      detectNetwork('502045678901234567').should.equal('Maestro');
-      detectNetwork('5020456789012345678').should.equal('Maestro');
-    });
-    it('has a prefix of 5038 and a length of ' + i, function() {
-      detectNetwork('503845678901').should.equal('Maestro');
-      detectNetwork('5038456789012').should.equal('Maestro');
-      detectNetwork('50384567890123').should.equal('Maestro');
-      detectNetwork('503845678901234').should.equal('Maestro');
-      detectNetwork('5038456789012345').should.equal('Maestro');
-      detectNetwork('50384567890123456').should.equal('Maestro');
-      detectNetwork('503845678901234567').should.equal('Maestro');
-      detectNetwork('5038456789012345678').should.equal('Maestro');
-    });
-    it('has a prefix of 6304 and a length of ' + i, function() {
-      detectNetwork('630445678901').should.equal('Maestro');
-      detectNetwork('6304456789012').should.equal('Maestro');
-      detectNetwork('63044567890123').should.equal('Maestro');
-      detectNetwork('630445678901234').should.equal('Maestro');
-      detectNetwork('6304456789012345').should.equal('Maestro');
-      detectNetwork('63044567890123456').should.equal('Maestro');
-      detectNetwork('630445678901234567').should.equal('Maestro');
-      detectNetwork('6304456789012345678').should.equal('Maestro');
-    });
-  });
-}
-
-/*describe('Maestro', function() {
-  // Write full test coverage for the Maestro card
+describe('Discover', function() {
   var should = chai.should();
-  it('has a prefix of 5018 and a length of 12', function() {
-    detectMaestro('501845678901').should.equal('Maestro');
-  });
-  it('has a prefix of 5020 and a length of 13', function() {
-    detectMaestro('5020456789012').should.equal('Maestro');
-  });
-  it('has a prefix of 5038 and a length of 14', function() {
-    detectMaestro('50384567890123').should.equal('Maestro');
-  });
-  it('has a prefix of 6304 and a length of 15', function() {
-    detectMaestro('630445678901234').should.equal('Maestro');
-  });
-  it('has a prefix of 5018 and a length of 16', function() {
-    detectMaestro('5018456789012345').should.equal('Maestro');
-  });
-  it('has a prefix of 5018 and a length of 17', function() {
-    detectMaestro('50184567890123456').should.equal('Maestro');
-  });
-  it('has a prefix of 5018 and a length of 18', function() {
-    detectMaestro('501845678901234567').should.equal('Maestro');
-  });
-  it('has a prefix of 5018 and a length of 19', function() {
-    detectMaestro('5018456789012345678').should.equal('Maestro');
-  });
+  for (var prefix = 644; prefix <= 649; prefix++) {
+    (function(currentPrefix) {
+      it('has a prefix of ' + currentPrefix + ' and a length of 16', function() {
+        detectNetwork(currentPrefix + '1345678901234').should.equal('Discover');
+      });
+      it('has a prefix of ' + currentPrefix + ' and a length of 19', function() {
+        detectNetwork(currentPrefix + '1456789012345678').should.equal('Discover');
+      });
+    })(prefix);
+  }
+});
 
-});*/
+
+describe('Maestro', function() {
+  var should = chai.should();
+  var count = '0';
+
+  for (var i = 12; i < 20; i++ ) {
+    //console.log('i ' + i + 'count' + count);
+    var testString = '50184567891' + count;
+    var testString1 = '50204567891' + count;
+    var testString2 = '50384567891' + count;
+    var testString3 = '63044567891' + count;
+    //console.log('length ' + len.length);
+    (function(test, i) {
+      it('has a prefix of 5018 and a length of ' + i, function() {
+        detectNetwork(test).should.equal('Maestro');
+      });
+    })(testString, i);
+
+    (function(test, i) {
+      it('has a prefix of 5020 and a length of ' + i, function() {
+        //console.log('i Before Second detectNetwork' + i);
+        detectNetwork(test).should.equal('Maestro');
+      });
+    })(testString1, i);
+
+    (function(test, i) {
+      it('has a prefix of 5038 and a length of ' + i, function() {
+        //console.log('i Before Second detectNetwork' + i);
+        detectNetwork(test).should.equal('Maestro');
+      });
+    })(testString2, i);
+
+    (function(test, i) {
+      it('has a prefix of 6304 and a length of ' + i, function() {
+        detectNetwork(test).should.equal('Maestro');
+      });
+    })(testString3, i);
+
+    count += '0';
+  }
+});
+
+
+describe('China UnionPay', function() {
+  var should = chai.should();
+  for (var j = 622126; j <= 622925; j++ ) {
+    (function(j) {
+      var testString = j + '1845678901';
+      it('has a prefix of ' + j + ' and a length of ' + 16, function() {
+        detectNetwork(testString).should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 622126; j <= 622925; j++ ) {
+    (function(j) {
+      var testString = j + '18456789012';
+      it('has a prefix of ' + j + ' and a length of ' + 17, function() {
+        detectNetwork(testString).should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 622126; j <= 622925; j++ ) {
+    (function(j) {
+      var testString = j + '184567890123';
+      it('has a prefix of ' + j + ' and a length of ' + 18, function() {
+        detectNetwork(testString).should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 622126; j <= 622925; j++ ) {
+    (function(j) {
+      var testString = j + '1845678901234';
+      it('has a prefix of ' + j + ' and a length of ' + 19, function() {
+        detectNetwork(testString).should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 624; j <= 626; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 16, function() {
+        detectNetwork(j + '1845678901234').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 624; j <= 626; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 17, function() {
+        detectNetwork(j + '18456789012345').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 624; j <= 626; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 18, function() {
+        detectNetwork(j + '184567890123456').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 624; j <= 626; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 19, function() {
+        detectNetwork(j + '1845678901234567').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 6282; j <= 6288; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 16, function() {
+        detectNetwork(j + '184567890123').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 6282; j <= 6288; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 17, function() {
+        detectNetwork(j + '1845678901234').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 6282; j <= 6288; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 18, function() {
+        detectNetwork(j + '18456789012345').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+
+  for (var j = 6282; j <= 6288; j++ ) {
+    (function(j) {
+      it('has a prefix of ' + j + ' and a length of ' + 19, function() {
+        detectNetwork(j + '184567890123456').should.equal('China UnionPay');
+      });
+    })(j);
+  }
+});
+
+
+
+describe('Switch', function() {
+  var should = chai.should();
+
+  var prefixofFourArray = ['4903', '4905', '4911', '4936', '6333', '6759'];
+  var prefixofSixArray = ['564182', '633110'];
+  for (var i = 0; i < prefixofFourArray.length; i++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+
+        detectNetwork(prefix + '184567890123').should.equal('Switch');
+      });
+    })(prefixofFourArray[i]);
+  }
+
+  for (var i = 0; i < prefixofSixArray.length; i++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        detectNetwork(prefix + '1845678901').should.equal('Switch');
+      });
+    })(prefixofSixArray[i]);
+  }
+
+  for (var i = 0; i < prefixofFourArray.length; i++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 18', function() {
+        detectNetwork(prefix + '18456789012345').should.equal('Switch');
+      });
+    })(prefixofFourArray[i]);
+  }
+
+  for (var i = 0; i < prefixofSixArray.length; i++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 18', function() {
+        detectNetwork(prefix + '184567890123').should.equal('Switch');
+      });
+    })(prefixofSixArray[i]);
+  }
+
+  for (var i = 0; i < prefixofFourArray.length; i++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        detectNetwork(prefix + '184567890123456').should.equal('Switch');
+      });
+    })(prefixofFourArray[i]);
+  }
+
+  for (var i = 0; i < prefixofSixArray.length; i++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        detectNetwork(prefix + '1845678901234').should.equal('Switch');
+      });
+    })(prefixofSixArray[i]);
+  }
+
+});
+
 
 
